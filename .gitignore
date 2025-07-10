@@ -1,0 +1,4 @@
+# Ignore local configs and logs
+.nexus-dashboard/
+*.log
+.DS_Store
