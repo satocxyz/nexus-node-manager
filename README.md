@@ -1,8 +1,20 @@
-# nexus-node-manager
+# Nexus Node Manager
 
 📘 Nexus Node Manager
 A simple CLI tool to manage your Nexus node lifecycle with automatic update checks, restart logic, and screen session isolation.
 Built for testnet users who want set-it-and-forget-it reliability.
+## ✨ Features
+
+- ✅ **Auto-updates** the Nexus CLI by checking GitHub releases
+- 🚀 **Automatically (re)starts nodes** when updates are detected
+- 🧠 **Interactive setup**: enter your Node IDs once and reuse them
+- 📁 **Config file support**: stores node IDs in `~/.nexus-dashboard/nodes.conf`
+- 📊 **Runs each node in its own screen session** (e.g., `nexus_14425146`)
+- 🔁 **Restarts nodes on update**, but leaves them untouched if no update is found
+- 🧠 **Sanity check**: starts nodes if no process is running even without an update
+- 📺 **Dashboard in a separate screen session** (`nexus_dashboard`)
+- 🔒 **Safe prompts** and input validation (y/n questions, fallback handling)
+- ☑️ Compatible with **Linux and WSL environments**
 
 # 🔧 Requirements
 Install these if not already available:
