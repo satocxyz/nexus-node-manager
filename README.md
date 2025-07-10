@@ -28,6 +28,10 @@ Clone the repo and run the installer:
 ```
 git clone https://github.com/satocxyz/nexus-node-manager.git
 cd nexus-node-manager
+```
+After cloning, run:
+```
+chmod +x install.sh
 ./install.sh
 ```
 
