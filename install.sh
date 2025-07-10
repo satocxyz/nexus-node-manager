@@ -38,3 +38,7 @@ if [[ "$answer" =~ ^(y|yes)$ ]]; then
     ./$DASHBOARD_SCRIPT
 elif [[ "$answer" =~ ^(n|no)$ ]]; then
     echo "👍 You can start it anytime by running:"
+    echo "./$DASHBOARD_SCRIPT"
+else
+    echo "⚠️ Invalid input. Expected 'y' or 'n'. Exiting without launching."
+fi
