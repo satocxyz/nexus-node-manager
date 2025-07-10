@@ -1,34 +1,32 @@
-{\rtf1\ansi\ansicpg1252\cocoartf2822
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-{\*\expandedcolortbl;;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+#!/bin/bash
 
-\f0\fs24 \cf0 #!/bin/bash\
-\
-# Name of the screen session\
-SCREEN_NAME="nexus_dashboard"\
-\
-# Start the dashboard in a detached screen\
-echo "\uc0\u55357 \u56960  Launching Nexus Dashboard in screen session: $SCREEN_NAME"\
-screen -dmS "$SCREEN_NAME" bash -c './nexus_updater.sh'\
-\
-# Small delay to ensure screen is created\
-sleep 1\
-\
-# Show only screens related to nexus_*\
-echo ""\
-echo "\uc0\u55357 \u56741 \u65039   Active Nexus screen sessions:"\
-screen -ls | grep -oE '\\t[0-9]+\\.(nexus_[^\\s]+)' | sed 's/^\\t//'\
-\
-echo ""\
-echo "\uc0\u9989  Dashboard is running in screen session: $SCREEN_NAME"\
-echo ""\
-echo "\uc0\u55357 \u56589  To attach to the dashboard:"\
-echo "   screen -r $SCREEN_NAME"\
-echo ""\
-echo "\uc0\u11013 \u65039   To detach and leave it running:"\
-echo "   Press Ctrl + A, then D"\
-echo ""\
-}
+DASHBOARD_SCREEN="nexus_dashboard"
+SCRIPT_NAME="nexus_updater.sh"
+
+# Ensure nexus_updater.sh is executable
+chmod +x "$SCRIPT_NAME"
+
+# Kill old dashboard screen if it's running
+if screen -list | grep -q "$DASHBOARD_SCREEN"; then
+    echo "🔁 An old '$DASHBOARD_SCREEN' session is running. Terminating..."
+    screen -S "$DASHBOARD_SCREEN" -X quit
+fi
+
+# Start new dashboard screen
+echo "🚀 Launching Nexus Node Manager in screen session '$DASHBOARD_SCREEN'..."
+screen -dmS "$DASHBOARD_SCREEN" bash -c "./$SCRIPT_NAME; exec bash"
+
+# Confirm
+echo "✅ Nexus Node Manager is now running inside screen: $DASHBOARD_SCREEN"
+echo ""
+
+# Show running node screens
+echo "📋 Running screen sessions (node processes):"
+screen -ls | grep "nexus_"
+
+echo ""
+echo "📺 To monitor the dashboard, run:"
+echo "screen -r $DASHBOARD_SCREEN"
+echo ""
+echo "🔌 To detach from the screen safely, press:"
+echo "Ctrl + A, then D"
