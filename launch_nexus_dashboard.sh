@@ -16,7 +16,7 @@ fi
 echo "🚀 Launching Nexus Node Manager in screen session '$DASHBOARD_SCREEN'..."
 screen -dmS "$DASHBOARD_SCREEN" bash -c "./$SCRIPT_NAME; exec bash"
 
-# Confirm
+# Confirm and show screen instructions
 echo "✅ Nexus Node Manager is now running inside screen: $DASHBOARD_SCREEN"
 echo ""
 
@@ -25,8 +25,12 @@ echo "📋 Running screen sessions (node processes):"
 screen -ls | grep "nexus_"
 
 echo ""
-echo "📺 To monitor the dashboard, run:"
-echo "screen -r $DASHBOARD_SCREEN"
+echo "📺 You will now enter the dashboard screen session."
+echo "💡 To detach at any time, press: Ctrl + A, then D"
 echo ""
-echo "🔌 To detach from the screen safely, press:"
-echo "Ctrl + A, then D"
+
+# Give the user a moment to read the info
+sleep 7
+
+# Attach to the screen
+screen -r "$DASHBOARD_SCREEN"
