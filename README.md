@@ -53,6 +53,18 @@ To list all nexus_ node screens:
 screen -ls
 ```
 
+# 📜 Log Monitoring
+All restart and update activities are automatically logged daily in:
+```
+~/.nexus-dashboard/logs/
+```
+Logs are automatically deleted after 7 days to save space.
+
+To view latest log:
+```
+cat ~/.nexus-dashboard/logs/nexus_node_manager_$(date +'%Y_%m_%d').log
+```
+
 # 🧩 Node Config
 Your Node IDs are saved at:
 ```
