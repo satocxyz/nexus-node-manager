@@ -10,17 +10,18 @@ if [[ ! -f "$UPDATER_SCRIPT" ]]; then
     exit 1
 fi
 
-# Start the updater in a new screen session with clean output
+# Start the updater in a detached screen session with clear output
 echo "🚀 Launching Nexus Node Manager in screen session '$DASHBOARD_SCREEN'..."
 screen -dmS "$DASHBOARD_SCREEN" bash -c "clear && $UPDATER_SCRIPT; exec bash"
 
-# Give the user time to read before shell prompt returns
-sleep 5
+# Wait a bit to ensure everything has time to launch
+sleep 3
 
+echo ""
 echo "✅ Nexus Node Manager is now running inside screen: $DASHBOARD_SCREEN"
 echo ""
 
-# Show currently running screen sessions for nodes
+# Show currently running node-related screens
 echo "📋 Running screen sessions (node processes):"
 screen -ls | grep "nexus_" || echo "⚠️  No node screens running yet."
 
@@ -31,3 +32,9 @@ echo ""
 echo "🔌 To detach from the screen safely, press:"
 echo "   Ctrl + A, then D"
 echo ""
+
+# Give users time to read the message before entering screen
+sleep 5
+
+# Auto-attach to the dashboard screen
+screen -r "$DASHBOARD_SCREEN"
