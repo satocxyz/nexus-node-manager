@@ -140,6 +140,9 @@ while true; do
     echo "📺 To attach to a node screen:"
     echo "   screen -r nexus_<node_id>  (e.g. screen -r nexus_14425146)"
     echo ""
+    echo "🔌 To detach from screen safely:"
+    echo "   👉 Press: Ctrl + A, then D"
+    echo ""
     echo "⏳ Sleeping for 1 hour..."
     sleep 3600
 done
